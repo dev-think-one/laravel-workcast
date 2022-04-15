@@ -1,5 +1,12 @@
 # Laravel: Workcast API integration
 
+[![Packagist License](https://img.shields.io/packagist/l/yaroslawww/laravel-workcast?color=%234dc71f)](https://github.com/yaroslawww/laravel-workcast/blob/master/LICENSE.md)
+[![Packagist Version](https://img.shields.io/packagist/v/yaroslawww/laravel-workcast)](https://packagist.org/packages/yaroslawww/laravel-workcast)
+[![Total Downloads](https://img.shields.io/packagist/dt/yaroslawww/laravel-workcast)](https://packagist.org/packages/yaroslawww/laravel-workcast)
+[![Build Status](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/badges/build.png?b=master)](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/?branch=master)
+
 Api documentation you can find [there](https://insite.workcast.com/api-webinar-registration-documentation)
 and [there](https://insite.workcast.com/api-webinar-reporting-documentation)
 
