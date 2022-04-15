@@ -26,7 +26,7 @@ trait WithRestFullRead
     {
         $query = array_merge([
             'limit' => 100,
-            'skip' => 0,
+            'skip'  => 0,
         ], $query);
 
         $response = $this->httpClient()->get($this->baseUrl(), $query);
@@ -41,7 +41,7 @@ trait WithRestFullRead
     {
         $response = $this->httpClient()->get($this->baseUrl() . "/{$id}");
 
-        if (! $response->ok() || $response->json('responseCode') != 200) {
+        if (!$response->ok() || $response->json('responseCode') != 200) {
             throw new WorkcastException('Request error', $response->status());
         }
 

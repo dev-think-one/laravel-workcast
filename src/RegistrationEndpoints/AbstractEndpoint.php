@@ -1,8 +1,9 @@
 <?php
 
-namespace LaravelWorkcast\Endpoints;
+namespace LaravelWorkcast\RegistrationEndpoints;
 
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use LaravelWorkcast\AccessToken;
 use LaravelWorkcast\Auth;
@@ -22,9 +23,7 @@ abstract class AbstractEndpoint
         $this->auth = $auth;
     }
 
-    abstract public function baseUrl():string;
-
-    abstract public function key():string;
+    abstract public function send(): Response;
 
     /**
      * @return PendingRequest
@@ -39,9 +38,9 @@ abstract class AbstractEndpoint
 
         return Http::withToken($token->getToken())
             ->withOptions(array_merge(
-                config('workcast.http_reporting_config', []),
+                config('workcast.http_registration_config', []),
                 [
-                    'base_uri' => config('workcast.reporting_url'),
+                    'base_uri' => config('workcast.registration_url'),
                 ]
             ));
     }

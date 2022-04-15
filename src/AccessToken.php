@@ -21,7 +21,7 @@ class AccessToken
      */
     public function __construct(string $token, int $expiresIn, ?\DateTimeInterface $expiresAt = null)
     {
-        $this->token = $token;
+        $this->token     = $token;
         $this->expiresIn = $expiresIn;
 
         if ($expiresAt) {
@@ -77,7 +77,7 @@ class AccessToken
     public function __serialize(): array
     {
         return [
-            'token' => $this->token,
+            'token'     => $this->token,
             'expiresIn' => $this->expiresIn,
             'expiresAt' => $this->expiresAt->format('Y-m-d H:i:s'),
         ];
@@ -85,7 +85,7 @@ class AccessToken
 
     public function __unserialize(array $data): void
     {
-        $this->token = $data['token'] ?? '';
+        $this->token     = $data['token']     ?? '';
         $this->expiresIn = $data['expiresIn'] ?? 0;
 
         try {

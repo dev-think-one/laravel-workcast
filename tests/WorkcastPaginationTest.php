@@ -29,7 +29,7 @@ class WorkcastPaginationTest extends TestCase
         $spy->shouldReceive('json')
             ->once()
             ->with('contacts.1.title', null)
-            ->andReturn("Zoom Effect");
+            ->andReturn('Zoom Effect');
 
         $spy->shouldReceive('json')
             ->once()
@@ -52,14 +52,14 @@ class WorkcastPaginationTest extends TestCase
             ->andReturn(null);
 
         $this->assertCount(2, $pagination->items());
-        $this->assertEquals("Zoom Effect", $pagination->items('1.title'));
-        $this->assertEquals("Something", $pagination->items('1.bla_bla', 'Something'));
+        $this->assertEquals('Zoom Effect', $pagination->items('1.title'));
+        $this->assertEquals('Something', $pagination->items('1.bla_bla', 'Something'));
         $this->assertEquals(3, $pagination->totalCount());
         $this->assertTrue($pagination->hasNext());
         $this->assertFalse($pagination->hasPrev());
         $this->assertNull($pagination->prevLink());
-        $this->assertEquals("https://link", $pagination->nextLink());
-        $this->assertEquals("contacts", $pagination->getKey());
+        $this->assertEquals('https://link', $pagination->nextLink());
+        $this->assertEquals('contacts', $pagination->getKey());
     }
 
     /** @test */

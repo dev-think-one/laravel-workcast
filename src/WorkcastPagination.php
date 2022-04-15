@@ -62,7 +62,7 @@ class WorkcastPagination
      */
     public function hasNext(): bool
     {
-        return ! empty($this->raw->json('paging.next'));
+        return !empty($this->raw->json('paging.next'));
     }
 
     /**
@@ -70,7 +70,7 @@ class WorkcastPagination
      */
     public function hasPrev(): bool
     {
-        return ! empty($this->raw->json('paging.previous'));
+        return !empty($this->raw->json('paging.previous'));
     }
 
     /**

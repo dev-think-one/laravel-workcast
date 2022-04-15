@@ -23,7 +23,7 @@ class AuthTest extends TestCase
     {
         Http::fake(function ($request) {
             return Http::response(json_encode([
-                'idToken' => 'asd123asd',
+                'idToken'   => 'asd123asd',
                 'expiresIn' => 3600,
             ]), 200);
         });

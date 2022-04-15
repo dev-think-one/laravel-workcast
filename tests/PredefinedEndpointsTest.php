@@ -65,7 +65,7 @@ class PredefinedEndpointsTest extends TestCase
     {
         $eventsEndpoint = new Contacts($this->auth, 22);
 
-        $this->assertEquals("events/22/contacts", $eventsEndpoint->baseUrl());
+        $this->assertEquals('events/22/contacts', $eventsEndpoint->baseUrl());
     }
 
     /** @test */
@@ -73,7 +73,7 @@ class PredefinedEndpointsTest extends TestCase
     {
         $eventsEndpoint = new Presenters($this->auth, 22);
 
-        $this->assertEquals("events/22/presenters", $eventsEndpoint->baseUrl());
+        $this->assertEquals('events/22/presenters', $eventsEndpoint->baseUrl());
     }
 
     /** @test */
@@ -81,6 +81,6 @@ class PredefinedEndpointsTest extends TestCase
     {
         $eventsEndpoint = new Sessions($this->auth, 22);
 
-        $this->assertEquals("events/22/sessions", $eventsEndpoint->baseUrl());
+        $this->assertEquals('events/22/sessions', $eventsEndpoint->baseUrl());
     }
 }

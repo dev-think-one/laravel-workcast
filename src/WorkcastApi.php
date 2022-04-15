@@ -6,6 +6,7 @@ use LaravelWorkcast\Endpoints\Contacts;
 use LaravelWorkcast\Endpoints\Events;
 use LaravelWorkcast\Endpoints\Presenters;
 use LaravelWorkcast\Endpoints\Sessions;
+use LaravelWorkcast\RegistrationEndpoints\Register;
 
 /**
  *
@@ -71,5 +72,13 @@ class WorkcastApi
     public function presenters(int $eventId): Presenters
     {
         return new Presenters($this->getAuth(), $eventId);
+    }
+
+    /**
+     * @return \LaravelWorkcast\RegistrationEndpoints\Register
+     */
+    public function registerRequest(): Register
+    {
+        return new Register($this->getAuth());
     }
 }

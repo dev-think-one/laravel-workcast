@@ -46,7 +46,7 @@ class Auth
         ))->post('/signin');
 
         if ($response->ok() && ($responseData = $response->json()) &&
-             ! empty($responseData['idToken']) && ! empty($responseData['expiresIn'])
+             !empty($responseData['idToken']) && !empty($responseData['expiresIn'])
         ) {
             $this->accessToken = new AccessToken($responseData['idToken'], $responseData['expiresIn']);
         } else {
@@ -61,7 +61,7 @@ class Auth
     protected function restoreToken(): void
     {
         $tokenData = Cache::get($this->cacheKey);
-        $token = unserialize($tokenData);
+        $token     = unserialize($tokenData);
         if ($token && ($token instanceof AccessToken) && $token->valid()) {
             $this->accessToken = $token;
         }
