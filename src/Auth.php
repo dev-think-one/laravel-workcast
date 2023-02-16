@@ -45,7 +45,7 @@ class Auth
             ]
         ))->post('/signin');
 
-        if ($response->ok() && ($responseData = $response->json()) &&
+        if ($response->ok()                   && ($responseData = $response->json()) &&
              !empty($responseData['idToken']) && !empty($responseData['expiresIn'])
         ) {
             $this->accessToken = new AccessToken($responseData['idToken'], $responseData['expiresIn']);

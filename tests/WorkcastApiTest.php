@@ -12,7 +12,6 @@ use LaravelWorkcast\Workcast;
 
 class WorkcastApiTest extends TestCase
 {
-
     /** @test */
     public function get_auth()
     {

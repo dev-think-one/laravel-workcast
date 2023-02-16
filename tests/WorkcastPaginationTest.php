@@ -9,7 +9,6 @@ use Mockery\Mock;
 
 class WorkcastPaginationTest extends TestCase
 {
-
     /** @test */
     public function pagination_data()
     {

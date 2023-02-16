@@ -8,7 +8,6 @@ use LaravelWorkcast\WorkcastPagination;
 
 trait WithRestFullRead
 {
-
     /**
      * @inheritDoc
      */

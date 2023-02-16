@@ -22,9 +22,9 @@ abstract class AbstractEndpoint
         $this->auth = $auth;
     }
 
-    abstract public function baseUrl():string;
+    abstract public function baseUrl(): string;
 
-    abstract public function key():string;
+    abstract public function key(): string;
 
     /**
      * @return PendingRequest
@@ -33,8 +33,11 @@ abstract class AbstractEndpoint
     public function httpClient(): PendingRequest
     {
         $token = $this->auth->getToken();
-        if (!$token || !($token instanceof AccessToken) || !$token->valid()) {
-            throw new WorkcastException('Token not valid');
+        if (!$token || !($token instanceof AccessToken)) {
+            throw new WorkcastException('Token is empty or has not valid structure');
+        }
+        if (!$token->valid()) {
+            throw new WorkcastException('Token not valid ['.var_export($token->getRawData(), true).']');
         }
 
         return Http::withToken($token->getToken())

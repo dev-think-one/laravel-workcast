@@ -3,6 +3,7 @@
 namespace LaravelWorkcast;
 
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 class AccessToken
 {
@@ -40,9 +41,6 @@ class AccessToken
         return $this->token && Carbon::now()->addMinute()->lessThan($this->expiresAt);
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getExpiresAt(): \DateTimeInterface
     {
         if ($this->valid()) {
@@ -93,5 +91,19 @@ class AccessToken
         } catch (\Exception $e) {
             $this->expiresAt = Carbon::now();
         }
+    }
+
+    public function getRawData(array|string $only = [
+        'expiresIn',
+        'expiresAt',
+    ]): array
+    {
+        return collect([
+            'token'     => $this->token,
+            'expiresIn' => $this->expiresIn,
+            'expiresAt' => $this->expiresAt->format('Y-m-d H:i:s'),
+        ])
+            ->only(Arr::wrap($only))
+            ->toArray();
     }
 }

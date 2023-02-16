@@ -10,7 +10,6 @@ use LaravelWorkcast\Auth;
 
 class AuthTest extends TestCase
 {
-
     /** @test */
     public function has_token()
     {

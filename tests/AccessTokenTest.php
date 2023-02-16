@@ -9,7 +9,6 @@ use LaravelWorkcast\AccessToken;
 
 class AccessTokenTest extends TestCase
 {
-
     /** @test */
     public function validity()
     {
@@ -53,7 +52,7 @@ class AccessTokenTest extends TestCase
 
         $serialised = serialize($accessToken);
 
-        $this->assertTrue(Str::containsAll($serialised, [ 'token', 'expiresIn', 'expiresAt' ]));
+        $this->assertTrue(Str::containsAll($serialised, ['token', 'expiresIn', 'expiresAt']));
 
         $accessToken = unserialize($serialised);
 
@@ -87,5 +86,19 @@ class AccessTokenTest extends TestCase
         $accessToken = new AccessToken('123qwe123', 59);
 
         $this->assertEquals(Carbon::now()->format('Y-m-d H:i:s'), $accessToken->getExpiresAt()->format('Y-m-d H:i:s'));
+    }
+
+    /** @test */
+    public function get_raw_data()
+    {
+        $accessToken = new AccessToken('123qwe123', 61);
+
+        $this->assertCount(2, $accessToken->getRawData());
+        $this->assertCount(1, $accessToken->getRawData('expiresIn'));
+        $this->assertCount(3, $accessToken->getRawData([
+            'token',
+            'expiresIn',
+            'expiresAt',
+        ]));
     }
 }
