@@ -1,21 +1,20 @@
 # Laravel: Workcast API integration
 
-[![Packagist License](https://img.shields.io/packagist/l/yaroslawww/laravel-workcast?color=%234dc71f)](https://github.com/yaroslawww/laravel-workcast/blob/master/LICENSE.md)
-[![Packagist Version](https://img.shields.io/packagist/v/yaroslawww/laravel-workcast)](https://packagist.org/packages/yaroslawww/laravel-workcast)
-[![Total Downloads](https://img.shields.io/packagist/dt/yaroslawww/laravel-workcast)](https://packagist.org/packages/yaroslawww/laravel-workcast)
-[![Build Status](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/badges/build.png?b=master)](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yaroslawww/laravel-workcast/?branch=master)
+![Packagist License](https://img.shields.io/packagist/l/think.studio/laravel-workcast?color=%234dc71f)
+[![Packagist Version](https://img.shields.io/packagist/v/think.studio/laravel-workcast)](https://packagist.org/packages/think.studio/laravel-workcast)
+[![Total Downloads](https://img.shields.io/packagist/dt/think.studio/laravel-workcast)](https://packagist.org/packages/think.studio/laravel-workcast)
+[![Build Status](https://scrutinizer-ci.com/g/dev-think-one/laravel-workcast/badges/build.png?b=main)](https://scrutinizer-ci.com/g/dev-think-one/laravel-workcast/build-status/main)
+[![Code Coverage](https://scrutinizer-ci.com/g/dev-think-one/laravel-workcast/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/dev-think-one/laravel-workcast/?branch=main)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dev-think-one/laravel-workcast/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/dev-think-one/laravel-workcast/?branch=main)
 
-Api documentation you can find [there](https://insite.workcast.com/api-webinar-registration-documentation)
-and [there](https://insite.workcast.com/api-webinar-reporting-documentation)
+Api documentation you can find [there](https://api-docs.workcast.com/)
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require yaroslawww/laravel-workcast
+composer require think.studio/laravel-workcast
 ```
 
 You can publish the config file with:
@@ -32,25 +31,36 @@ WORKCAST_API_KEY='066t...L21135A='
 
 ## Usage
 
-```injectablephp
-$pagination = Workcast::events()->list([ 'limit' => 50 ]);
-    foreach ($pagination->items() as $item) {
-        echo $item['eventPak'];
-    }
+Paginated request example for listings:
 
-    if ($pagination->hasNext()) {
-        echo $pagination->nextLink();
-        // Workcast::events()->callPagination($pagination->nextLink());
-    }
+```php
+$pagination = Workcast::events()->list([ 'limit' => 50 ]);
+foreach ($pagination->items() as $item) {
+    echo $item['eventPak'];
+}
+
+if ($pagination->hasNext()) {
+    echo $pagination->nextLink();
+    // Workcast::events()->callPagination($pagination->nextLink());
+}
 ```
 
-```injectablephp
+Single entity request:
+
+```php
 $item = Workcast::events()->get(22);
 dd($item->json());
 ```
 
-An example of a custom endpoint (in case this package does not contain the required endpoint)
-```injectablephp
+By default in package specified this list of endpoints:
+
+```php
+
+```
+
+But you can also specify you own endpoint:
+
+```php
 use LaravelWorkcast\Endpoints\AbstractEndpoint;
 use LaravelWorkcast\Endpoints\HasRestFullRead;
 use LaravelWorkcast\Endpoints\WithRestFullRead;
@@ -69,7 +79,7 @@ class Presenters extends AbstractEndpoint implements HasRestFullRead
 
     public function baseUrl(): string
     {
-        return "events/{$this->eventId}/" . $this->key();
+        return "presenters/{$this->eventId}/sessions/" . $this->key();
     }
 
     public function key(): string
@@ -78,7 +88,7 @@ class Presenters extends AbstractEndpoint implements HasRestFullRead
     }
 }
 
-(new Presenters(Workcast::getAuth(), 33))->get(55)->json();
+$pagination = (new Presenters(Workcast::getAuth(), 33))->list([ 'limit' => 50 ]);
 ```
 
 ## Credits
