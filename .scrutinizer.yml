@@ -9,7 +9,7 @@ build:
         php:
           version: 8.1
           ini:
-            "xdebug.mode": coverage,
+            "xdebug.mode": coverage
       tests:
         override:
           - command: vendor/bin/phpunit --coverage-clover=coverage-file
